@@ -1,4 +1,6 @@
 # StockTickerAgent
 
 
-Eddy Lau
+* Eddy Lau
+* Joe Pelz
+
