@@ -15,11 +15,18 @@ Members
 To-Do List
 **********
 
-* 3 HTML's
+
+* Models: 1 model per DB table
+  * movements
+  * players
+  * stocks
+  * transactions
+
 * 3 Controllers
   * Homepage
   * Stock Page
   * Player Page
+  * Login page or panel or popup
  
   
 * Each page requires a:
