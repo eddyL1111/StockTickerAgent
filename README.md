@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ################
 StockTickerAgent
 ################
@@ -46,4 +45,3 @@ To-Do List
   * Use separate view templates for different layouts
  
  * Base model for consistent functionality
-=======
