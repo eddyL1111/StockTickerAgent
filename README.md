@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ################
 StockTickerAgent
 ################
@@ -9,6 +10,7 @@ Members
 * Eddy Lau
 * Joe Pelz
 * Chih Tseng
+* Dimitry Rakhlei
  
 **********
 To-Do List
@@ -44,3 +46,4 @@ To-Do List
   * Use separate view templates for different layouts
  
  * Base model for consistent functionality
+=======
