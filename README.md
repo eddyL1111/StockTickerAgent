@@ -1,5 +1,6 @@
 # StockTickerAgent
 
 
-Eddy Lau
-Dimitry Rakhlei
+* Eddy Lau
+* Joe Pelz
+* Dimitry Rakhlei
