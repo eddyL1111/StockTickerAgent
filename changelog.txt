@@ -1,0 +1,6 @@
+Convention: newest items at the top.  
+Include changes in each pull request.
+Format: [YYYY-MM-DD] [24H:MIN] what changed
+
+2016-02-04 17:09 changelog created
+
