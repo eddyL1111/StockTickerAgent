@@ -4,4 +4,5 @@
 <link rel="stylesheet" href="/assets/js/semantic.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="/assets/js/semantic.js"></script>
+<script src="/assets/js/main.js"></script>
 </head>
