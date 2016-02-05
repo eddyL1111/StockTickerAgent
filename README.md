@@ -1,4 +1,6 @@
-#StockTickerAgent
+################
+StockTickerAgent
+################
 
 *******
 Members
@@ -17,6 +19,8 @@ To-Do List
   * Homepage
   * Stock Page
   * Player Page
+ 
+  
 * Each page requires a:
   * One Header
   * Navbar
@@ -24,13 +28,19 @@ To-Do List
   * Title
   * Two nested panels or pages done through methods in controller
   * One Footer
-
-You want to have a controller for each main page. The nested pages or panels
-should be done through methods in the controller. For example, your homepage
-would have two additional methods (one per panel), your stock history page
-would have separate methods for the movement and transactions.
-Use a base controller, with a master view template providing the overall webpage
-layout & placeholders for the “real” content on a page.
-Use separate view templates for the different layouts (panels) your site will need.
-Use a base model to provide consistent functionality across your data sources.
-
+  
+  
+ * The homepage would have:
+   * Two additional methods
+   * One per panel
+  
+  
+ * The stock history page would have:
+   * One method for movement
+   * One method for transactions
+ 
+ * Master view template
+  * Provides a overall webpage layout and placeholders for the "real" conten
+  * Use separate view templates for different layouts
+ 
+ * Base model for consistent functionality
