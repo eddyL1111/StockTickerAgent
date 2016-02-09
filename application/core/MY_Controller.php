@@ -25,7 +25,7 @@ class MY_Controller extends CI_Controller {
 		$this->data = array();
 		$this->data['title'] = 'Stock Ticker Agent';	// our default title
 		$this->errors = array();
-		$this->data['page_title'] = 'Stock Tickering Agent';   // our default page
+		$this->data['page_title'] = 'Stock Ticker Agent';   // our default page
 	}
 
 	/**

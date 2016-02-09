@@ -29,6 +29,7 @@ class Welcome extends MY_Controller {
             $this->load->model('stocks');
             $this->load->model('players');
             $this->data['pagebody'] = 'homepage';
+            $this->data['title'] = 'Dashboard';
             $this->data['page_title'] = 'Stock Ticker Agent';
             
             
