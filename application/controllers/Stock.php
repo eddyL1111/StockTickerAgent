@@ -13,12 +13,9 @@ class Stock extends MY_Controller {
     {
         parent::__construct();
 
-        $this->load->helper('url');
     }
-    public function index()
-    {
-        $this->load->model('stocks');
-        $this->load->model('players');
+    public function index() {
+        $this->session->set_flashdata('redirectToCurrent', current_url());
         $this->data['pagebody'] = 'stocks';
         $this->data['title'] = 'Stocks';
         $this->data['page_title'] = 'Stock Ticker Agent';

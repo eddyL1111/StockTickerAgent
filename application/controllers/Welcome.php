@@ -7,7 +7,6 @@ class Welcome extends MY_Controller {
         function __construct()
         {
                 parent::__construct();
-                $this->load->helper('url');
         }
     
 	/**
@@ -29,6 +28,7 @@ class Welcome extends MY_Controller {
 	{
             $this->load->model('stocks');
             $this->load->model('players');
+            $this->session->set_flashdata('redirectToCurrent', current_url());
             $this->data['pagebody'] = 'overview';
             $this->data['title'] = 'Overview';
             $this->data['page_title'] = 'Stock Ticker Agent';
