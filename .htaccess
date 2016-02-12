@@ -3,7 +3,7 @@ RewriteEngine on
 # Allow requests for valid file or folder names, or some that should be
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d [OR]
-RewriteCond $1 ^(robots\.txt|favicon\.ico|style\.css)
+RewriteCond $1 ^(robots\.txt|assets\|style\.css)
 RewriteRule ^(.*)$ - [L]
 # use index.php as front controller ...
 RewriteRule ^(.*)$ ./index.php/$1 [L]

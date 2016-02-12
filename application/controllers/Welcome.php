@@ -7,6 +7,7 @@ class Welcome extends MY_Controller {
         function __construct()
         {
                 parent::__construct();
+                $this->load->helper('url');
         }
     
 	/**
@@ -26,6 +27,16 @@ class Welcome extends MY_Controller {
 	 */
 	public function index()
 	{
+            /*
+             * 
+        
+        $this->load->view('welcome_message');
+        $this->load->view('css_js_view');
+        $this->load->view('navbar');
+        
+             */
+            
+            
             $this->load->model('stocks');
             $this->load->model('players');
             $this->data['pagebody'] = 'homepage';
