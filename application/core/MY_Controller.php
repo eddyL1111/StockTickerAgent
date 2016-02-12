@@ -21,11 +21,12 @@ class MY_Controller extends CI_Controller {
 
 	function __construct()
 	{
-		parent::__construct();
-		$this->data = array();
-		$this->data['title'] = 'Stock Ticker Agent';	// our default title
-		$this->errors = array();
-		$this->data['page_title'] = 'Stock Ticker Agent';   // our default page
+            parent::__construct();
+            $this->data = array();
+            $this->data['title'] = 'Stock Ticker Agent';	// our default title
+            $this->errors = array();
+            $this->data['page_title'] = 'Stock Ticker Agent';   // our default page
+            $this->session->set_flashdata('redirectToCurrent', current_url());
 	}
 
 	/**
@@ -44,10 +45,27 @@ class MY_Controller extends CI_Controller {
             
             // finally, build the browser page!
             $this->data['data'] = &$this->data;
-
+            
             $this->parser->parse('_template', $this->data);
 	}
-
+        
+        function login()
+        {
+            //TODO: validate login information
+            if ($this->input->post('password') != NULL && $this->input->post('username') != NULL) 
+            {
+                $this->session->set_userdata('pass', $this->input->post('password'));
+                $this->session->set_userdata('name', $this->input->post('username'));
+            }
+            redirect($this->session->flashdata('redirectToCurrent'));
+        }
+        
+        function logout()
+        {
+            $this->session->unset_userdata('name');
+            $this->session->unset_userdata('pass');
+            redirect($this->session->flashdata('redirectToCurrent'));
+        }
 }
 
 /* End of file MY_Controller.php */

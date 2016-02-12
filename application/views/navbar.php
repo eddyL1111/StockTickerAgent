@@ -30,12 +30,12 @@
         Log-in to your account
       </div>
     </h2>
-    <form class="ui large form">
+    <form class="ui large form" action="/welcome/login" method="POST">
       <div class="ui stacked segment">
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="email" placeholder="E-mail address">
+            <input type="text" name="username" placeholder="Username">
           </div>
         </div>
         <div class="field">
