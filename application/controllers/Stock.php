@@ -15,6 +15,7 @@ class Stock extends MY_Controller {
 
     }
     public function index() {
+        $this->load->model('stocks');
         $this->session->set_flashdata('redirectToCurrent', current_url());
         $this->data['pagebody'] = 'stocks';
         $this->data['title'] = 'Stocks';

@@ -2,6 +2,7 @@
     Log In
     <i class="lock icon"></i>
 </a>
+
 <div class="ui modal">
   <div class="ui middle aligned center aligned grid">
   <div class="column">
