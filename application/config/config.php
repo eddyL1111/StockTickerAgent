@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['menu_choices'] = array(
 	'menudata' => array(
-		array('name' => 'Overview',  'link' => '/welcome',   'active' => '', 'class' => 'home icon'),
+		array('name' => 'Overview',  'link' => '/',   'active' => '', 'class' => 'home icon'),
 		array('name' => 'Portfolio', 'link' => '/portfolio', 'active' => '', 'class' => 'heartbeat icon'),
 		array('name' => 'Stocks',    'link' => '/stock',     'active' => '', 'class' => 'line chart icon'),
 	)
