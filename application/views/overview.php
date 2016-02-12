@@ -1,4 +1,5 @@
-<div class="ui center aligned two column grid">
+<div class="ui center aligned four column grid">
+    <div class="column"></div>
     <div class="column">
         <h2>Stocks</h2>
         <div class="row">
@@ -33,4 +34,5 @@
             </table>
         </div>
     </div>
+    <div class="column"></div>
 </div>

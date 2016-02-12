@@ -2,7 +2,7 @@
     Log In
     <i class="lock icon"></i>
 </a>
-{login_active}
+
 <div class="ui modal">
   <div class="ui middle aligned center aligned grid">
   <div class="column">
@@ -39,3 +39,5 @@
   </div>
   </div>
 </div>
+
+{login_active}
