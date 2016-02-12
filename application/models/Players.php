@@ -22,9 +22,17 @@ class Players extends CI_Model {
         return $query->result_array();
     }
     
+    /**
+     * Checks for the existance of a given username in the player table.
+     * @param type $name
+     * @return boolean True if the name exists in the database
+     */
     function hasName($name) {
-        $this->db->where('Player', $name); 
+        //mysql database sql injection prevention
+        $this->db->where('Player', mysql_real_escape_string($name)); 
         $query = $this->db->get("players");
         return $query->num_rows() > 0;
     }
+    
+    
 }

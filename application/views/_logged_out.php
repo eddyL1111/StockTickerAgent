@@ -29,7 +29,7 @@
         <div class="ui fluid large black submit button">Login</div>
       </div>
 
-      <div class="ui error message"></div>
+        <div class="ui {login_errors_visible} error message">{login_errors}</div>
 
     </form>
 

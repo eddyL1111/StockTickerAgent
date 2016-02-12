@@ -43,7 +43,7 @@ class Welcome extends MY_Controller {
             }
             $this->data['stocks'] = $stocks;
             
-            //Load the stock information and save it in the 'players' $this->data index
+            //Load the player information and save it in the 'players' $this->data index
             $source = $this->players->all();
             $players = array();
             foreach ($source as $record)
