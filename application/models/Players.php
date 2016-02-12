@@ -21,4 +21,10 @@ class Players extends CI_Model {
         $query = $this->db->get("players"); //get the players table
         return $query->result_array();
     }
+    
+    function hasName($name) {
+        $this->db->where('Player', $name); 
+        $query = $this->db->get("players");
+        return $query->num_rows() > 0;
+    }
 }

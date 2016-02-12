@@ -82,6 +82,8 @@ class MY_Controller extends CI_Controller {
         
         function login()
         {
+            $this->load->model('players');
+            
             $name = "";
             $pass = "";
             if ($this->input->post('password') != NULL && $this->input->post('username') != NULL) 
@@ -112,7 +114,7 @@ class MY_Controller extends CI_Controller {
         
         function _isValidCredentials($name, $pass)
         {
-            return false;
+            return $this->players->hasName($name);
         }
         
         function logout()
