@@ -3,15 +3,15 @@
         <i class="dollar icon"></i>
         Stock Ticker Agent
     </div>
-  <a class="item active" onclick="window.location='<?php echo site_url("Overview");?>'" id="home">
+  <a class="item active" href="/welcome" id="home">
       <i class="home icon"></i>
       Overview
   </a>
-    <a class="item" onclick="window.location='<?php echo site_url("Portfolio");?>'" id="portfolio">
+    <a class="item" href="/portfolio" id="portfolio">
     <i class="heartbeat icon"></i>
     Portfolio
   </a>
-  <a class="item" onclick="window.location='<?php echo site_url("Stocks");?>'" id="stocks">
+  <a class="item" href="/stock" id="stocks">
     <i class="line chart icon"></i>
     Stocks
   </a>
@@ -19,12 +19,6 @@
         Log In
         <i class="lock icon"></i>
     </a>
-</div>
-
-<div class="ui center aligned three column grid">
-    <div class="column">first</div>
-    <div class="column">second</div>
-    <div class="column">third</div>
 </div>
 
 <div class="ui modal">

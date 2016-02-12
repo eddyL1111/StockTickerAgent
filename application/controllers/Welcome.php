@@ -27,42 +27,29 @@ class Welcome extends MY_Controller {
 	 */
 	public function index()
 	{
-            /*
-             * 
-        
-        $this->load->view('welcome_message');
-        $this->load->view('css_js_view');
-        $this->load->view('navbar');
-        
-             */
-            
-            
             $this->load->model('stocks');
             $this->load->model('players');
-            $this->data['pagebody'] = 'homepage';
-            $this->data['title'] = 'Dashboard';
+            $this->data['pagebody'] = 'overview';
+            $this->data['title'] = 'Overview';
             $this->data['page_title'] = 'Stock Ticker Agent';
-            
             
             //Load the stock information and save it in the 'stocks' $this->data index
             $source = $this->stocks->all();
             $stocks = array();
             foreach ($source as $record)
             {
-                    $stocks[] = array('code' => $record['Code'], 'name' => $record['Name'], 'category' => $record['Category'], 'value' => $record['Value']);
+                $stocks[] = array('code' => $record['Code'], 'name' => $record['Name'], 'category' => $record['Category'], 'value' => $record['Value']);
             }
             $this->data['stocks'] = $stocks;
-            
             
             //Load the stock information and save it in the 'players' $this->data index
             $source = $this->players->all();
             $players = array();
             foreach ($source as $record)
             {
-                    $players[] = array('name' => $record['Player'], 'cash' => $record['Cash']);
+                $players[] = array('name' => $record['Player'], 'cash' => $record['Cash']);
             }
             $this->data['players'] = $players;
-            
             
             //Assemble the page and spit back to user!  See MY_Controller for render().
             $this->render();
