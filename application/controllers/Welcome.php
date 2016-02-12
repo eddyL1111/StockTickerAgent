@@ -32,6 +32,7 @@ class Welcome extends MY_Controller {
             $this->data['pagebody'] = 'overview';
             $this->data['title'] = 'Overview';
             $this->data['page_title'] = 'Stock Ticker Agent';
+            $this->data['active_tab'] = 'Overview';
             
             //Load the stock information and save it in the 'stocks' $this->data index
             $source = $this->stocks->all();
