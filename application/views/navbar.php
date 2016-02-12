@@ -3,15 +3,15 @@
         <i class="dollar icon"></i>
         Stock Ticker Agent
     </div>
-  <a class="item active">
+  <a class="item active" onclick="window.location='<?php echo site_url("Overview");?>'" id="home">
       <i class="home icon"></i>
       Overview
   </a>
-  <a class="item">
+    <a class="item" onclick="window.location='<?php echo site_url("Portfolio");?>'" id="portfolio">
     <i class="heartbeat icon"></i>
     Portfolio
   </a>
-  <a class="item">
+  <a class="item" onclick="window.location='<?php echo site_url("Stocks");?>'" id="stocks">
     <i class="line chart icon"></i>
     Stocks
   </a>
