@@ -37,6 +37,7 @@ class MY_Controller extends CI_Controller {
 	{
             $this->data['main_head'] = $this->parser->parse('css_js_view', $this->data, true);
             
+            //Login state
             if ($this->session->userdata('name'))
             {
                 //If logged in currently
@@ -50,12 +51,14 @@ class MY_Controller extends CI_Controller {
                 //If logged out currently
                 $info = array(
                     'url' => current_url() == '/' ? '' : current_url(),
-                    //'login_active' => 'active',
+                    'login_active' => 'active',
                     'login_name' => $this->session->flashdata('login_name')
                     );
                 $login = $this->parser->parse('_logged_out', $info, true);
             }
             
+            
+            //Nav bar
             $menu = $this->config->item('menu_choices');
             foreach ($menu['menudata'] as &$value)
             {
@@ -66,11 +69,10 @@ class MY_Controller extends CI_Controller {
             }
             $menu['login'] = $login;
             $this->data['main_navbar'] = $this->parser->parse('navbar', $menu, true);
-            $this->data['main_content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
             
-            //parser->parse(filename, associative array, true);
-            //$this->data['menubar'] = $this->parser->parse('_menubar', $this->config->item('menu_choices'), true);
-            //$this->data['content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
+            
+            
+            $this->data['main_content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
             
             // finally, build the browser page!
             $this->data['data'] = &$this->data;
@@ -87,13 +89,13 @@ class MY_Controller extends CI_Controller {
                 $name = $this->input->post('username');
                 $pass = $this->input->post('password');
                 //sanitize user input
-                $this->load->library('security');
-                $name = $this->security->xss_clean($name);
-                $pass = $this->security->xss_clean($pass);
+                //$this->load->library('security');
+                //$name = $this->security->xss_clean($name);
+                //$pass = $this->security->xss_clean($pass);
             }
             //TODO: validate login information against players names
             //if valid information:
-            if (_isValidCredentials($name, $pass))
+            if ($this->_isValidCredentials($name, $pass))
             {
                 $this->session->set_userdata('pass', $this->input->post('password'));
                 $this->session->set_userdata('name', $this->input->post('username'));
@@ -101,6 +103,7 @@ class MY_Controller extends CI_Controller {
             {
                 $this->session->set_flashdata('login_name', $name);
                 $this->session->set_flashdata('login_active', 'active');
+                $this->session->set_flashdata('login_error', 'Invalid Credentials');
             }
             //else if invalid information:
             // save username in flashdata
@@ -109,7 +112,7 @@ class MY_Controller extends CI_Controller {
         
         function _isValidCredentials($name, $pass)
         {
-            return true;
+            return false;
         }
         
         function logout()

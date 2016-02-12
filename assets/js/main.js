@@ -1,3 +1,5 @@
+
+
 $(function () {
     $('a.item').click(function() {
         $('.item').removeClass('active'); 
@@ -11,7 +13,6 @@ $(function () {
     
     $('#login').click(function() {
         $('.ui.modal').modal('show');
-        $(this).removeClass('active');
         $('.item').removeClass('active');
     });
     
