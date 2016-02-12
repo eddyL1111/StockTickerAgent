@@ -1,7 +1,18 @@
 Convention: newest items at the top.  
 Include changes in each pull request.
 Format: [YYYY-MM-DD] [24H:MIN] what changed
-
+2016-02-12 15:30 Finished login/logout methods:
+                     error messages on incorrect data
+                     sanitize user input (XSS)
+                     sanitize mysql queries (real escape string)
+                     login returns you to previous page
+                     can login from any page
+2016-02-11 19:00 Finished Overview page:
+                     Table of data
+                     links to other pages
+                     merged with dimitry's UI
+                     modularized UI into template pages
+                     navbar highlights current page
 2016-02-08 19:00 Renamed My_Model.php to MY_Model.php
                  Added development subfolder to gitignore to hide db password
                  Automatically loads the database and parsing libraries
