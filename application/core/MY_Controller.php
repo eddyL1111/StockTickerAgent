@@ -37,6 +37,16 @@ class MY_Controller extends CI_Controller {
 	{
             $this->data['main_head'] = $this->parser->parse('css_js_view', $this->data, true);
             
+            if ($this->session->userdata('name'))
+            {
+                $info = array('name' => $this->session->userdata('name'), 'url' => current_url() == '/' ? '' : current_url());
+                $login = $this->parser->parse('_logged_in', $info, true);
+            } else
+            {
+                $info = array('url' => current_url() == '/' ? '' : current_url());
+                $login = $this->parser->parse('_logged_out', $info, true);
+            }
+            
             $menu = $this->config->item('menu_choices');
             foreach ($menu['menudata'] as &$value)
             {
@@ -45,6 +55,7 @@ class MY_Controller extends CI_Controller {
                     $value['active'] = 'active';
                 }
             }
+            $menu['login'] = $login;
             $this->data['main_navbar'] = $this->parser->parse('navbar', $menu, true);
             $this->data['main_content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
             

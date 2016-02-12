@@ -11,8 +11,7 @@ class Portfolio extends MY_Controller {
         parent::__construct();
     }
     public function index() {
-        $this->load->model('stocks');
-        $this->load->model('players');
+        $this->session->set_flashdata('redirectToCurrent', current_url());
         $this->data['pagebody'] = 'portfolio';
         $this->data['title'] = 'Portfolio';
         $this->data['page_title'] = 'Stock Ticker Agent';
