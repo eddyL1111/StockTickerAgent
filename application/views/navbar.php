@@ -3,18 +3,12 @@
         <i class="dollar icon"></i>
         Stock Ticker Agent
     </div>
-  <a class="item active" href="/welcome" id="home">
-      <i class="home icon"></i>
-      Overview
-  </a>
-    <a class="item" href="/portfolio" id="portfolio">
-    <i class="heartbeat icon"></i>
-    Portfolio
-  </a>
-  <a class="item" href="/stock" id="stocks">
-    <i class="line chart icon"></i>
-    Stocks
-  </a>
+    {menudata}
+    <a class="item {active}" href="{link}">
+        <i class="{class}"></i>
+        {name}
+    </a>
+    {/menudata}
     <a class="right floated item" id="login">
         Log In
         <i class="lock icon"></i>
