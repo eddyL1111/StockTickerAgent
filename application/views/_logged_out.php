@@ -2,8 +2,8 @@
     Log In
     <i class="lock icon"></i>
 </a>
-
-<div class="ui {login_active} modal">
+{login_active}
+<div class="ui modal">
   <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h2 class="ui black image header">

@@ -51,7 +51,7 @@ class MY_Controller extends CI_Controller {
                 //If logged out currently
                 $info = array(
                     'url' => current_url() == '/' ? '' : current_url(),
-                    'login_active' => 'active',
+                    'login_active' => $this->session->flashdata('login_active'),
                     'login_name' => $this->session->flashdata('login_name')
                     );
                 $login = $this->parser->parse('_logged_out', $info, true);
@@ -102,7 +102,7 @@ class MY_Controller extends CI_Controller {
             } else
             {
                 $this->session->set_flashdata('login_name', $name);
-                $this->session->set_flashdata('login_active', 'active');
+                $this->session->set_flashdata('login_active', '<script>showlogin();</script>');
                 $this->session->set_flashdata('login_error', 'Invalid Credentials');
             }
             //else if invalid information:

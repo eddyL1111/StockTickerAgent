@@ -18,6 +18,15 @@ $(function () {
     
 });
 
+
+function showlogin () {
+    $('.ui.modal').modal('show');
+};
+
+function hidelogin() {
+    $('.ui.modal').modal('hide');
+};
+
 $(document)
     .ready(function() {
       $('.ui.form')
