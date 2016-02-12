@@ -14,7 +14,7 @@ $(function () {
         $(this).removeClass('active');
         $('.item').removeClass('active');
     });
-
+    
 });
 
 $(document)

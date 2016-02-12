@@ -31,5 +31,6 @@ class Welcome extends CI_Controller {
         $this->load->view('welcome_message');
         $this->load->view('css_js_view');
         $this->load->view('navbar');
+        
     }
 }
