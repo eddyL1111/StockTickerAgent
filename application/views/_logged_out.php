@@ -14,11 +14,10 @@
     </h2>
     <form class="ui large form" action="{url}/login" method="POST">
       <div class="ui stacked segment">
-          <h2>{url}/login</h2>
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="username" placeholder="Username" value="{login_name}">
           </div>
         </div>
         <div class="field">

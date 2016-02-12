@@ -39,11 +39,20 @@ class MY_Controller extends CI_Controller {
             
             if ($this->session->userdata('name'))
             {
-                $info = array('name' => $this->session->userdata('name'), 'url' => current_url() == '/' ? '' : current_url());
+                //If logged in currently
+                $info = array(
+                    'name' => $this->session->userdata('name'), 
+                    'url' => current_url() == '/' ? '' : current_url()
+                    );
                 $login = $this->parser->parse('_logged_in', $info, true);
             } else
             {
-                $info = array('url' => current_url() == '/' ? '' : current_url());
+                //If logged out currently
+                $info = array(
+                    'url' => current_url() == '/' ? '' : current_url(),
+                    //'login_active' => 'active',
+                    'login_name' => $this->session->flashdata('login_name')
+                    );
                 $login = $this->parser->parse('_logged_out', $info, true);
             }
             
@@ -71,13 +80,36 @@ class MY_Controller extends CI_Controller {
         
         function login()
         {
-            //TODO: validate login information
+            $name = "";
+            $pass = "";
             if ($this->input->post('password') != NULL && $this->input->post('username') != NULL) 
+            {
+                $name = $this->input->post('username');
+                $pass = $this->input->post('password');
+                //sanitize user input
+                $this->load->library('security');
+                $name = $this->security->xss_clean($name);
+                $pass = $this->security->xss_clean($pass);
+            }
+            //TODO: validate login information against players names
+            //if valid information:
+            if (_isValidCredentials($name, $pass))
             {
                 $this->session->set_userdata('pass', $this->input->post('password'));
                 $this->session->set_userdata('name', $this->input->post('username'));
+            } else
+            {
+                $this->session->set_flashdata('login_name', $name);
+                $this->session->set_flashdata('login_active', 'active');
             }
+            //else if invalid information:
+            // save username in flashdata
             redirect($this->session->flashdata('redirectToCurrent'));
+        }
+        
+        function _isValidCredentials($name, $pass)
+        {
+            return true;
         }
         
         function logout()
