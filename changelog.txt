@@ -2,5 +2,10 @@ Convention: newest items at the top.
 Include changes in each pull request.
 Format: [YYYY-MM-DD] [24H:MIN] what changed
 
+2016-02-08 19:00 Renamed My_Model.php to MY_Model.php
+                 Added development subfolder to gitignore to hide db password
+                 Automatically loads the database and parsing libraries
+                 Added database access models for Players and Stocks tables
+                 Added placeholder welcome page with players and stocks visible
 2016-02-04 17:09 changelog created
 

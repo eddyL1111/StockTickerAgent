@@ -6,17 +6,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * and open the template in the editor.
  */
 
-class Portfolio extends CI_Controller {
+class Portfolio extends MY_Controller {
     function __construct() {
         parent::__construct();
         
         $this->load->helper('url');
     }
     public function index() {
-        
-        $this->load->view('welcome_message');
-        $this->load->view('css_js_view');
-        $this->load->view('navbar');
-        $this->load->view('portfolio');
+        $this->load->model('stocks');
+        $this->load->model('players');
+        $this->data['pagebody'] = 'portfolio';
+        $this->data['title'] = 'Portfolio';
+        $this->data['page_title'] = 'Stock Ticker Agent';
+
+        //Assemble the page and spit back to user!  See MY_Controller for render().
+        $this->render();
     }
 }
