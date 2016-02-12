@@ -16,6 +16,7 @@ class Stock extends MY_Controller {
         $this->data['pagebody'] = 'stocks';
         $this->data['title'] = 'Stocks';
         $this->data['page_title'] = 'Stock Ticker Agent';
+        $this->data['active_tab'] = 'Stocks';
 
 
         //Assemble the page and spit back to user!  See MY_Controller for render().

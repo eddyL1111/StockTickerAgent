@@ -21,12 +21,12 @@ class MY_Controller extends CI_Controller {
 
 	function __construct()
 	{
-            parent::__construct();
-            $this->data = array();
-            $this->data['title'] = 'Stock Ticker Agent';	// our default title
-            $this->errors = array();
-            $this->data['page_title'] = 'Stock Ticker Agent';   // our default page
-            $this->session->set_flashdata('redirectToCurrent', current_url());
+		parent::__construct();
+		$this->data = array();
+		$this->data['title'] = 'Stock Ticker Agent';	// our default title
+		$this->errors = array();
+		$this->data['page_title'] = 'Stock Ticker Agent';   // our default page
+                $this->data['active_tab'] = 'Overview';
 	}
 
 	/**
@@ -36,7 +36,16 @@ class MY_Controller extends CI_Controller {
 	function render()
 	{
             $this->data['main_head'] = $this->parser->parse('css_js_view', $this->data, true);
-            $this->data['main_navbar'] = $this->parser->parse('navbar', $this->data, true);
+            
+            $menu = $this->config->item('menu_choices');
+            foreach ($menu['menudata'] as &$value)
+            {
+                if (strcmp($value['name'], $this->data['active_tab']) == 0)
+                {
+                    $value['active'] = 'active';
+                }
+            }
+            $this->data['main_navbar'] = $this->parser->parse('navbar', $menu, true);
             $this->data['main_content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
             
             //parser->parse(filename, associative array, true);

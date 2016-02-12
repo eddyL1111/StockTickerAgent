@@ -16,6 +16,7 @@ class Portfolio extends MY_Controller {
         $this->data['pagebody'] = 'portfolio';
         $this->data['title'] = 'Portfolio';
         $this->data['page_title'] = 'Stock Ticker Agent';
+        $this->data['active_tab'] = 'Portfolio';
 
         //Assemble the page and spit back to user!  See MY_Controller for render().
         $this->render();
