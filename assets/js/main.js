@@ -15,6 +15,11 @@ $(function () {
         $('.item').removeClass('active');
     });
     
+    $('.ui.dropdown').click(function() {
+       $('.ui.dropdown').dropdown();
+    });
+
+    
 });
 
 $(document)
