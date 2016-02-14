@@ -3,6 +3,7 @@
     <div class="column">
         <h2>Stocks</h2>
         <div class="row">
+            <form action="stock" method="post">
             <table class="ui celled table">
             <thead>
               <tr><th>Code</th>
@@ -12,10 +13,15 @@
             </tr></thead>
             <tbody>
                 {stocks}
-                <tr><td><a href="/stock/history/{code}">{code}</a></td><td>{name}</td><td>{category}</td><td>{value}</td></tr>
+                    <tr>
+                        <td><input type="submit" name="stock_type" class="submitButton" value="{code}"></td>
+                        <td>{name}</td><td>{category}</td><td>{value}</td>
+                    </tr>
                 {/stocks}
             </tbody>
             </table>
+            </form>
+
         </div>
     </div>
     <div class="column">
