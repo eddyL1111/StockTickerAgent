@@ -27,6 +27,7 @@
     <div class="column">
         <h2>Players</h2>
         <div class="row">
+            <form action="portfolio" method="post">
             <table class="ui celled table">
             <thead>
               <tr><th>Player</th>
@@ -34,10 +35,14 @@
             </tr></thead>
             <tbody>
                 {players}
-                <tr><td><a href="/portfolio/{name}">{name}</a></td><td>{cash}</td></tr>
+                <tr>
+                    <td><input type="submit" name="player_info" class="submitButton" value="{name}"></td>
+                    <td>{cash}</td>
+                </tr>                
                 {/players}
             </tbody>
             </table>
+            </form>
         </div>
     </div>
     <div class="column"></div>
