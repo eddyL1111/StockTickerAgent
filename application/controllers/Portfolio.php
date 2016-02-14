@@ -18,7 +18,7 @@ class Portfolio extends MY_Controller {
         
         $this->player_list();
         $this->activity();
-        $this->holdings2();
+        $this->holdings();
         $this->render();
     }
     
@@ -50,10 +50,11 @@ class Portfolio extends MY_Controller {
     public function holdings()
     {
         $holding_data = $this->transactions->all();
-        $holding = array(
-                            'stock'     => null,
-                            'amount'  => null
-                        );
+        //$holder = array();
+        $stock = array();
+        $amount = array();
+        $trans = array();
+            
         
         $selectedPlayer = 'recent';
         
@@ -68,80 +69,51 @@ class Portfolio extends MY_Controller {
         }
         else
         {
-            foreach($holding_data as $data)
-            {
-                if($data['Player'] == $selectedPlayer)
-                {
-                    if(array_key_exists($data['Stock'], $holding['stock'])){
-                        $stock_index = array_search($data['Stock'], $holding_data[sto]);
-                        $holding['Quantity'][$stock_index] += $data['Quantity'];
-                    } else {
-                        $holding[] = array(
-                            'stock'     => $data['Stock'],
-                            'amount'  => $data['Quantity']
-                        );
-                    }
+            foreach($holding_data as $data) { // $data is an array
+                if($selectedPlayer != $data['Player']) {
+                    continue;
                 }
+                array_push($stock, $data['Stock']);
+                array_push($amount, $data['Quantity']);
+                array_push($trans, $data['Trans']);  
             }
         }
-        $this->data['holdings'] = $holding;
+        
+        for($i=0; $i < sizeof($stock); $i++) {    
+           if($trans[$i] == 'sell') {
+               $amount[$i] *= (-1);
+           }
+        }
+        
+        $holder = array();
+        $new_stock = array();
+        $new_amount = array();
+        for($i=1; $i < sizeof($stock); $i++) {  
+            if($i-1 == 0) {
+                array_push($new_stock, $stock[$i-1]);
+                array_push($new_amount, $amount[$i-1]);
+            }
+            
+            if(in_array($stock[$i], $new_stock)) {
+                $index = array_search($stock[$i], $new_stock);
+                $new_amount[$index] += $amount[$i];
+            } else {
+                array_push($new_stock, $stock[$i]);
+                array_push($new_amount, $amount[$i]);
+            }
+        }
+        
+        for($i=0; $i < sizeof($new_stock); $i++) {
+            
+             $holder[] = array(
+                'stock' => $new_stock[$i],
+                'amount' => $new_amount[$i]
+            );
+        }
+       
+        $this->data['holdings'] = $holder;
     }
     
-    public function holdings2()
-    {
-        $holding_data = $this->transactions->all();
-        $holding = array();
-        $curHolding = array();
-        
-        $selectedPlayer = 'recent';
-        
-        if(isset($_POST['player_info']))
-        {
-            $selectedPlayer = $_POST['player_info'];
-        }
-        
-        if($selectedPlayer == 'recent') 
-        {
-            
-        }
-        else
-        {
-            foreach($holding_data as $data)
-            {
-                if($data['Player'] == $selectedPlayer)
-                {
-                    if($data['Trans'] == "buy") 
-                    {
-                        if(array_key_exists($data['Stock'], $holding))
-                        {
-                            $holding[$data['Stock']]->amount += $data['Stock'];
-                        }
-                        else
-                        {
-                            $holding[] = array(
-                            'stock'     => $data['Stock'],
-                            'amount'  => 0 + $data['Quantity']
-                            );
-                        }
-                    }else
-                    {
-                        if(array_key_exists($data['Stock'], $holding))
-                        {
-                            $holding[$data['Stock']]->amount -= $data['Stock'];
-                        }
-                        else
-                        {
-                            $holding[] = array(
-                            'stock'     => $data['Stock'],
-                            'amount'  => 0 - $data['Quantity']
-                            );
-                        }
-                    }
-                }
-            }
-        }
-        $this->data['holdings'] = $holding;
-    }
     
     public function activity() 
     {
