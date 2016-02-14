@@ -45,6 +45,7 @@ class Portfolio extends MY_Controller {
         $this->data['title'] = 'Portfolio';
         $this->data['page_title'] = 'Stock Ticker Agent';
         $this->data['active_tab'] = 'Portfolio';
+        $this->data['name'] = $this->session->userdata('name');
     }
     
     public function holdings()
@@ -62,21 +63,20 @@ class Portfolio extends MY_Controller {
         {
             $selectedPlayer = $_POST['player_info'];
         }
-        
-        if($selectedPlayer == 'recent') 
+
+                
+        if(is_null($selectedPlayer) || $selectedPlayer == 'recent') 
         {
-            
+            $selectedPlayer = $this->session->userdata('name');
         }
-        else
-        {
-            foreach($holding_data as $data) { // $data is an array
-                if($selectedPlayer != $data['Player']) {
-                    continue;
-                }
-                array_push($stock, $data['Stock']);
-                array_push($amount, $data['Quantity']);
-                array_push($trans, $data['Trans']);  
+        
+        foreach($holding_data as $data) { // $data is an array
+            if($selectedPlayer != $data['Player']) {
+                continue;
             }
+            array_push($stock, $data['Stock']);
+            array_push($amount, $data['Quantity']);
+            array_push($trans, $data['Trans']);  
         }
         
         for($i=0; $i < sizeof($stock); $i++) {    
@@ -121,36 +121,27 @@ class Portfolio extends MY_Controller {
         $activity = array();
         
         $selectedPlayer = 'recent';
+        
         if(isset($_POST['player_info']))
         {
             $selectedPlayer = $_POST['player_info'];
         }
         
-        if($selectedPlayer == 'recent') 
+        if(is_null($selectedPlayer) || $selectedPlayer == 'recent') 
         {
-            foreach($activity_data as $data)
-            {
+            $selectedPlayer = $this->session->userdata('name');
+        }
+        
+        foreach($activity_data as $data)
+        {
+            if($data['Player'] == $selectedPlayer) // Filtering for type of stock
+            { 
                 $activity[] = array(
                  'datetime'      => $data['DateTime'],
                  'stock'         => $data['Stock'],
                  'transaction'   => $data['Trans'],
                  'quantity'      => $data['Quantity']
                 );
-            }
-        }
-        else
-        {
-            foreach($activity_data as $data)
-            {
-                if($data['Player'] == $selectedPlayer) // Filtering for type of stock
-                { 
-                    $activity[] = array(
-                     'datetime'      => $data['DateTime'],
-                     'stock'         => $data['Stock'],
-                     'transaction'   => $data['Trans'],
-                     'quantity'      => $data['Quantity']
-                    );
-                }
             }
         }
         $this->data['transactions'] = $activity;
