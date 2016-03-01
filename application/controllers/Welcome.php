@@ -39,16 +39,16 @@ class Welcome extends MY_Controller {
             $stocks = array();
             foreach ($source as $record)
             {
-                $stocks[] = array('code' => $record['Code'], 'name' => $record['Name'], 'category' => $record['Category'], 'value' => $record['Value']);
+                $stocks[] = array('code' => $record->Code, 'name' => $record->Name, 'category' => $record->Category, 'value' => $record->Value);
             }
             $this->data['stocks'] = $stocks;
             
             //Load the player information and save it in the 'players' $this->data index
             $source = $this->players->all();
             $players = array();
-            foreach ($source as $record)
+            foreach ($source as $row)
             {
-                $players[] = array('name' => $record['Player'], 'cash' => $record['Cash']);
+                $players[] = array('name' => $row->Player, 'cash' => $row->Cash);
             }
             $this->data['players'] = $players;
             

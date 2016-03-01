@@ -100,16 +100,16 @@ class Stock extends MY_Controller {
      */
     public function stock_list() 
     {
-        $stocks_data = $this->stocks->all();
+        $stocks_data = $this->stocks->all('desc');
         $stocks = array();
 
         foreach($stocks_data as $data) 
         {
             $stocks[] = array(
-                'code'      => $data['Code'],
-                'name'      => $data['Name'],
-                'category'  => $data['Category'],
-                'value'     => $data['Value']
+                'code'      => $data->Code,
+                'name'      => $data->Name,
+                'category'  => $data->Category,
+                'value'     => $data->Value
             );
         }
         $this->data['stocks'] = $stocks; 
@@ -120,10 +120,10 @@ class Stock extends MY_Controller {
      */
     public function set_movement($data) {
         $result = array(
-            'datetime'  => $data['Datetime'],
-            'code'      => $data['Code'],
-            'action'    => $data['Action'],
-            'amount'    => $data['Amount']
+            'datetime'  => $data->Datetime,
+            'code'      => $data->Code,
+            'action'    => $data->Action,
+            'amount'    => $data->Amount
         ); 
         return $result;
     }
@@ -134,11 +134,11 @@ class Stock extends MY_Controller {
      */
     private function set_transaction($data) {
         $result = array(
-            'datetime'  => $data['DateTime'],
-            'player'    => $data['Player'],
-            'stock'     => $data['Stock'],
-            'trans'     => $data['Trans'],
-            'quantity'  => $data['Quantity']
+            'datetime'  => $data->DateTime,
+            'player'    => $data->Player,
+            'stock'     => $data->Stock,
+            'trans'     => $data->Trans,
+            'quantity'  => $data->Quantity
         ); 
         return $result;
     }
