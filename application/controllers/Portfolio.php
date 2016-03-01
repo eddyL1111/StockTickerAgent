@@ -46,6 +46,7 @@ class Portfolio extends MY_Controller {
         $this->data['page_title'] = 'Stock Ticker Agent';
         $this->data['active_tab'] = 'Portfolio';
         $this->data['name'] = $this->session->userdata('name');
+        $this->session->set_flashdata('redirectToCurrent', current_url());
     }
     
     public function holdings()

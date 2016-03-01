@@ -28,11 +28,11 @@ class Welcome extends MY_Controller {
 	{
             $this->load->model('stocks');
             $this->load->model('players');
-            $this->session->set_flashdata('redirectToCurrent', current_url());
             $this->data['pagebody'] = 'overview';
             $this->data['title'] = 'Overview';
             $this->data['page_title'] = 'Stock Ticker Agent';
             $this->data['active_tab'] = 'Overview';
+            $this->session->set_flashdata('redirectToCurrent', current_url());
             
             //Load the stock information and save it in the 'stocks' $this->data index
             $source = $this->stocks->all();

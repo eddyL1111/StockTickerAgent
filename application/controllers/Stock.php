@@ -154,5 +154,6 @@ class Stock extends MY_Controller {
         $this->data['title'] = 'Stocks';
         $this->data['page_title'] = 'Stock Ticker Agent';
         $this->data['active_tab'] = 'Stocks'; 
+        $this->session->set_flashdata('redirectToCurrent', current_url());
     }
 }
