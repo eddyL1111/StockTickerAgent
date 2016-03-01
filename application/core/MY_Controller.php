@@ -85,7 +85,7 @@ class MY_Controller extends CI_Controller {
             {
                 //If logged out currently
                 $info = array(
-                    'url' => current_url() == '/' ? '' : current_url(),
+                    'url' => strcmp(current_url(), '/') == 0 ? '' : current_url(),
                     'login_active' => $this->session->flashdata('login_active'),
                     'login_name' => $this->session->flashdata('login_name'),
                     'login_errors' => $this->session->flashdata('login_errors') == FALSE ? '' : $this->parser->parse('_error_message', array('error_array' => $this->session->flashdata('login_errors')), true),
@@ -160,7 +160,7 @@ class MY_Controller extends CI_Controller {
             array_push($errors, array('message' => "Incorrect password or username"));
             $this->data['errors'] = $errors;
             
-            return $this->players->hasName($name);
+            return $this->players->exists($name);
         }
         
         /**
