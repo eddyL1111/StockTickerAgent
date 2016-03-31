@@ -7,48 +7,89 @@ Members
 *******
 
 * Eddy Lau
+ * User Registration
+  * Registration Page
+  * Roles
 * Joe Pelz
+ * Buy
+ * Sell
 * Chih Tseng
+ * Gameplay Page
+ * Dashboard
 * Dimitry Rakhlei
+ * Portfolio
  
 **********
 To-Do List
 **********
 
+*Dashboard
+	*Show current stocks
+		*Value
+	*Show active player
+		*Name
+		*Avatar
+		*FIVE most recent transactions
+	*Summary Information
+		*Game #
+		*Status
+		
+*Stocks
+	*Show active stocks
+	*Drill-down(see more info)
+	*Movements
+	*Transactions
+	
+	*BUYING STOCKS
+		*send a POST request to BSX/buy with the following:
+			*team: team code
+			*token
+			*player
+			*stock
+			*quantity
+		*Check if player has sufficient cash
+			*if sufficient
+				*complete transaction
+				*return stock certificate as XML document with the following:
+					*team
+					*player
+					*stock
+					*quantity
+					*certificate
+				*return receipt including
+					*cash spent
+					*certificate
+			*else
+				*error
+	
+	*SELLING STOCKS
+		*Send a POST request to BSX/sell with the following:
+	
+*Portfolio
+	*List of users
+		*Drilldown
+		*Transactions
+			*Split
+			*Delistings
+	
+*Player Login
+	*Registration Page
+	*Provide UNIQUE UserID
+	
+*Player Administration
+	*Roles
+		*Player
+			*Anyone can do this
+		*Admin
+			*Player maintenance
 
-* Models: 1 model per DB table
-  * movements
-  * players
-  * stocks
-  * transactions
+			
+*Agent Rgistration
+	*App registers with the BSX server
+	*If game is ready
+		*send POST to register the following:
+			*team
+			*name
+			*password
+				*will be posted on D2L as a news item
 
-* 3 Controllers
-  * Homepage
-  * Stock Page
-  * Player Page
-  * Login page or panel or popup
- 
-  
-* Each page requires a:
-  * One Header
-  * Navbar
-   * Login 
-  * Title
-  * Two nested panels or pages done through methods in controller
-  * One Footer
-  
-  
- * The homepage would have:
-   * Two additional methods
-   * One per panel
-  
-  
- * The stock history page would have:
-   * One method for movement
-   * One method for transactions
- 
- * Master view template
-  * Provides a overall webpage layout and placeholders for the "real" conten
-  * Use separate view templates for different layouts
- 
- * Base model for consistent functionality
