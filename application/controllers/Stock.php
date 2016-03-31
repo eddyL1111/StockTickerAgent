@@ -53,7 +53,7 @@ class Stock extends MY_Controller {
         {
             foreach($movements_data as $data)
             {
-                if($data['Code'] == $stock_code) // Filtering for type of stock 
+                if($data->Code == $stock_code) // Filtering for type of stock 
                 {
                     $movements[] = $this->set_movement($data);
                 }
@@ -87,7 +87,7 @@ class Stock extends MY_Controller {
         {
             foreach($transactions_data as $data)
             {
-                if($data['Stock'] == $stock_code) // Filtering for type of stock
+                if($data->Stock == $stock_code) // Filtering for type of stock
                 { 
                     $transactions[] = $this->set_transaction($data);
                 }
