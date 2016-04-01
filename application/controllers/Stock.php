@@ -149,13 +149,18 @@ class Stock extends MY_Controller {
      */
     private function init_setup() {
         $this->load->model('stocks');
-        $this->load->model('players');
         $this->load->model('movements');
         $this->load->model('transactions');
-        $this->data['pagebody'] = 'stocks';
-        $this->data['title'] = 'Stocks';
-        $this->data['page_title'] = 'Stock Ticker Agent';
-        $this->data['active_tab'] = 'Stocks'; 
+        $this->data['pagebody'] = 'stocks'; //load the stocks page fragment
+        $this->data['active_tab'] = 'Stocks'; //which menu tab to have highlighted
+        
+        if (strcmp($this->stock_code, 'recent') == 0) {
+            $this->data['page_title'] = 'Stock History';  //The title for the specific page
+            $this->data['title'] = 'Stocks'; //Use "Stocks" for the tab/window name
+        } else {
+            $this->data['page_title'] = 'Stock History - '.$this->stock_code;  //The title for the specific page
+            $this->data['title'] = 'Stocks ('.$this->stock_code.')'; //Use "Stocks" for the tab/window name
+        }
         $this->session->set_flashdata('redirectToCurrent', current_url());
     }
 }

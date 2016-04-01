@@ -1,7 +1,7 @@
 <div class="ui black inverted menu" id="navbar">
     <div class="header item">
         <i class="dollar icon"></i>
-        Stock Ticker Agent
+        <a href="/">Stock Ticker Agent</a>
     </div>
     {menudata}
     <a class="item {active}" href="{link}">
