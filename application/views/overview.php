@@ -14,7 +14,7 @@
             <tbody>
                 {stocks}
                     <tr>
-                        <td><input type="submit" name="stock_type" class="submitButton" value="{code}"></td>
+                        <td><a href="/stock/{code}">{code}</a></td>
                         <td>{name}</td><td>{category}</td><td>{value}</td>
                     </tr>
                 {/stocks}

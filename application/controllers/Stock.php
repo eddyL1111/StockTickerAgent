@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 class Stock extends MY_Controller {
+    private $stock_code;
     
     function __construct()
     {
@@ -16,8 +17,9 @@ class Stock extends MY_Controller {
     /*
      * Initializes the stock view.
      */
-    public function index()
+    public function index($code = 'recent')
     {
+        $this->stock_code = $code;
         $this->init_setup(); // e.g Loading data and models
         $this->stock_list(); // List data of stocks for view
         $this->movement(); // Data for movement table
@@ -42,7 +44,7 @@ class Stock extends MY_Controller {
             $stock_code = $_POST['stock_type']; 
         }       
         
-        if($stock_code == 'recent') 
+        if($this->stock_code == 'recent') 
         {
             foreach($movements_data as $data) // Displays most active
             {
@@ -53,7 +55,7 @@ class Stock extends MY_Controller {
         {
             foreach($movements_data as $data)
             {
-                if($data->Code == $stock_code) // Filtering for type of stock 
+                if($data->Code == $this->stock_code) // Filtering for type of stock 
                 {
                     $movements[] = $this->set_movement($data);
                 }
@@ -77,7 +79,7 @@ class Stock extends MY_Controller {
             $stock_code = $_POST['stock_type'];
         } 
         
-        if($stock_code == 'recent') {
+        if($this->stock_code == 'recent') {
             foreach($transactions_data as $data) // Displays most active 
             {
                 $transactions[] = $this->set_transaction($data);
@@ -87,7 +89,7 @@ class Stock extends MY_Controller {
         {
             foreach($transactions_data as $data)
             {
-                if($data->Stock == $stock_code) // Filtering for type of stock
+                if($data->Stock == $this->stock_code) // Filtering for type of stock
                 { 
                     $transactions[] = $this->set_transaction($data);
                 }

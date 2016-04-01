@@ -1,6 +1,6 @@
 <h1>Stock History</h1>
 
-<form accept-charset="utf-8" method="post" action="stock">
+<form accept-charset="utf-8" method="post" action="/stock">
     <fieldset>
         <legend> </legend>
         Stock types:
