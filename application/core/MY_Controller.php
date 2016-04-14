@@ -172,4 +172,19 @@ class MY_Controller extends CI_Controller {
             $this->session->unset_userdata('pass');
             redirect($this->session->flashdata('redirectToCurrent'));
         }
+        
+        function restrict($roleNeeded = null) {
+            $userRole= $this->session->userdata('userRole');
+            if($roleNeeded != null) {
+                if(is_array($roleNeeded)) {
+                    if(!in_array($userRole, $roleNeeded)) {
+                        redirect("/");
+                        return;
+                    }
+                }else if ($userRole != $roleNeeded) {
+                    redirect("/");
+                    return;
+                }
+            }  
+        }
 }
