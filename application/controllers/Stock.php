@@ -33,35 +33,35 @@ class Stock extends MY_Controller {
      * data. Default data is the most recent stock.
      */
     public function movement()
-    {      
-        $movements_data = $this->movements->find_recent_by_stock();
-        $movements = array();
-        $stock_code = 'recent';
-        
-        /// Get selected value from dropdown list
-        if(isset($_POST['stock_type'])) 
-        {
-            $stock_code = $_POST['stock_type']; 
-        }       
-        
-        if($this->stock_code == 'recent') 
-        {
-            foreach($movements_data as $data) // Displays most active
-            {
-                $movements[] = $this->set_movement($data);
-            }
+    {
+        $movement_data = $this->movements->find_recent_by_stock();
+        if (count($movement_data) > 20) {
+            $movement_data_short = array_slice($movement_data, 0, 20);
+        } else if (count($movement_data) == 0) {
+            $movement_data_short = array();
+            //Could add dummy entry
+            //"seq","datetime","code","action","amount"
+            /*
+            $movement_data_short = array(
+                'seq' => 'no data',
+                'datetime' => 0,
+                'code' => 'no data',
+                'action' => 'no data',
+                'amount' => 'no data'
+            );
+            */
+        } else {
+            $movement_data_short = $movement_data;
         }
-        else 
-        {
-            foreach($movements_data as $data)
-            {
-                if($data->Code == $this->stock_code) // Filtering for type of stock 
-                {
-                    $movements[] = $this->set_movement($data);
-                }
-            }
+        
+        //change format of datetime field
+        foreach($movement_data_short as $key=>$value) {
+            $dt = new DateTime();
+            $dt->setTimestamp($value['datetime']);
+            $movement_data_short[$key]['datetime'] = $dt->format('Y-m-d H:i:s');
         }
-        $this->data['movements'] = $movements;
+        
+        $this->data['movements'] = $movement_data_short;
     }
     /*
      * Sets transaction data according to the type of stock from the most recent 
@@ -69,80 +69,43 @@ class Stock extends MY_Controller {
      */
     public function transactions() 
     {
-        $transactions_data = $this->transactions->find_recent_by_stock();
-        $transactions = array();
-        $stock_code = 'recent';
-        
-        /// Get selected value from dropdown list
-        if(isset($_POST['stock_type'])) 
-        {
-            $stock_code = $_POST['stock_type'];
-        } 
-        
-        if($this->stock_code == 'recent') {
-            foreach($transactions_data as $data) // Displays most active 
-            {
-                $transactions[] = $this->set_transaction($data);
-            }
+        $transaction_data = $this->transactions->find_recent_by_stock();
+        if (count($transaction_data) > 20) {
+            $transaction_data_short = array_slice($transaction_data, 0, 20);
+        } else if (count($transaction_data) == 0) {
+            $transaction_data_short = array();
+            //could add dummy entry...
+            //"seq","datetime","agent","player","stock","trans","quantity"
+            /*
+            $transaction_data_short[] = array(
+                'seq' => ' ',
+                'datetime' => 0,
+                'agent' => ' ',
+                'player' => ' ',
+                'stock' => ' ',
+                'trans' => ' ',
+                'quantity' => ' '
+            );
+            */
+        } else {
+            $transaction_data_short = $transaction_data;
         }
-        else 
-        {
-            foreach($transactions_data as $data)
-            {
-                if($data->Stock == $this->stock_code) // Filtering for type of stock
-                { 
-                    $transactions[] = $this->set_transaction($data);
-                }
-            }
+        
+        //change format of datetime field
+        foreach($transaction_data_short as $key=>$value) {
+            $dt = new DateTime();
+            $dt->setTimestamp($value['datetime']);
+            $transaction_data_short[$key]['datetime'] = $dt->format('Y-m-d H:i:s');
         }
-        $this->data['transactions'] = $transactions;
+        
+        $this->data['transactions'] = $transaction_data_short;
     }
     /*
      *  Converts database data into an array for the view.
      */
     public function stock_list() 
     {
-        $stocks_data = $this->stocks->all('desc');
-        $stocks = array();
-
-        foreach($stocks_data as $data) 
-        {
-            $stocks[] = array(
-                'code'      => $data->Code,
-                'name'      => $data->Name,
-                'category'  => $data->Category,
-                'value'     => $data->Value
-            );
-        }
-        $this->data['stocks'] = $stocks; 
-    }
-    /*
-     * Sets the movement data from the databse.
-     * @return Array with transaction attributes.
-     */
-    public function set_movement($data) {
-        $result = array(
-            'datetime'  => $data->Datetime,
-            'code'      => $data->Code,
-            'action'    => $data->Action,
-            'amount'    => $data->Amount
-        ); 
-        return $result;
-    }
-    
-    /*
-     * Sets the transaction data from the databse.
-     * @return Array with transaction attributes.
-     */
-    private function set_transaction($data) {
-        $result = array(
-            'datetime'  => $data->DateTime,
-            'player'    => $data->Player,
-            'stock'     => $data->Stock,
-            'trans'     => $data->Trans,
-            'quantity'  => $data->Quantity
-        ); 
-        return $result;
+        $this->data['stocks'] = $this->stocks->all('desc');
     }
     /*
      * Loads all necessary models and data for the layout.
