@@ -34,12 +34,12 @@ class Stock extends MY_Controller {
      */
     public function movement()
     {
-        $movement_data = $this->movements->find_recent_by_stock();
+        //$movement_data = $this->movements->all('desc');
         
         if (count($this->stock_code) == 0 || strcmp($this->stock_code, 'recent') == 0) {
-            $movement_data_filtered = $movement_data;
+            $movement_data_filtered = $this->movements->all('desc');
         } else {
-            $movement_data_filtered = $this->filter_movement($movement_data, $this->stock_code);
+            $movement_data_filtered = $this->movements->some('code', $this->stock_code);
         }
         
         if (count($movement_data_filtered) > 20) {
@@ -91,12 +91,12 @@ class Stock extends MY_Controller {
      */
     public function transactions() 
     {
-        $transaction_data = $this->transactions->find_recent_by_stock();
+        //$transaction_data = $this->transactions->find_recent_by_stock();
         
         if (count($this->stock_code) == 0 || strcmp($this->stock_code, 'recent') == 0) {
-            $transaction_data_filtered = $transaction_data;
+            $transaction_data_filtered = $this->transactions->all('desc');
         } else {
-            $transaction_data_filtered = $this->filter_transactions($transaction_data, $this->stock_code);
+            $transaction_data_filtered = $this->transactions->some('stock', $this->stock_code);
         }
         
         if (count($transaction_data_filtered) > 20) {
