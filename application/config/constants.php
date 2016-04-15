@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+//define('BSX_SERVER', 'http://bsx.jlparry.com/');
+define('BSX_SERVER', 'http://www.comp4711bsx.local/');
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace

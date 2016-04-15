@@ -1,15 +1,7 @@
 <?php
 
-class Movements extends MY_Model {
+class Movements extends MY_Model2 {
     function __construct() {
-        parent::__construct("movements", "Datetime");
+        parent::__construct("data/movement", "datetime");
     }
-    
-    function find_recent_by_stock() 
-    {
-        $this->db->order_by("Datetime", "desc"); 
-        $query = $this->db->get($this->_tableName); 
-        return $query->result();
-    }
-    
 }

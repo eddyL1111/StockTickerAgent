@@ -6,8 +6,8 @@
  * and open the template in the editor.
  */
 
-class Stocks extends MY_Model {
+class Stocks extends MY_Model2 {
     function __construct() {
-        parent::__construct("stocks", "Code");
+        parent::__construct("data/stocks", "code");
     }
 }

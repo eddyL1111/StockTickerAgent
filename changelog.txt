@@ -1,6 +1,11 @@
 Convention: newest items at the top.  
 Include changes in each pull request.
 Format: [YYYY-MM-DD] [24H:MIN] what changed
+
+2016-04-14 18:00 Joe: Updated Stocks Page, and models
+                    Added new interface to MY_Model
+                    updated Stocks, Transactions, Movements models
+                    to use the testing server.
 2016-02-12 15:30 Finished login/logout methods:
                      error messages on incorrect data
                      sanitize user input (XSS)
