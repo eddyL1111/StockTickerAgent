@@ -35,9 +35,12 @@ class Stock extends MY_Controller {
     public function movement()
     {
         $movement_data = $this->movements->find_recent_by_stock();
-        if (count($movement_data) > 20) {
-            $movement_data_short = array_slice($movement_data, 0, 20);
-        } else if (count($movement_data) == 0) {
+        
+        $movement_data_filtered = $this->filter_movement($movement_data, $this->stock_code);
+        
+        if (count($movement_data_filtered) > 20) {
+            $movement_data_short = array_slice($movement_data_filtered, 0, 20);
+        } else if (count($movement_data_filtered) == 0) {
             $movement_data_short = array();
             //Could add dummy entry
             //"seq","datetime","code","action","amount"
@@ -51,7 +54,7 @@ class Stock extends MY_Controller {
             );
             */
         } else {
-            $movement_data_short = $movement_data;
+            $movement_data_short = $movement_data_filtered;
         }
         
         //change format of datetime field
@@ -63,6 +66,31 @@ class Stock extends MY_Controller {
         
         $this->data['movements'] = $movement_data_short;
     }
+    
+    public function filter_movement($data, $code) {
+        $data_filtered = array();
+        
+        foreach($data as $value) {
+            if (strcmp($value['code'], $code) == 0) {
+                $data_filtered[] = $value;
+            }
+        }
+        return $data_filtered;
+    }
+    
+    public function filter_transactions($data, $code) {
+        $data_filtered = array();
+        
+        foreach($data as $value) {
+            if (strcmp($value['stock'], $code) == 0) {
+                $data_filtered[] = $value;
+            }
+        }
+        
+        return $data_filtered;
+    }
+    
+    
     /*
      * Sets transaction data according to the type of stock from the most recent 
      * data. Default data is the most recent stock.

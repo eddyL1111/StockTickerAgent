@@ -7,8 +7,8 @@ class Transactions extends MY_Model {
     
     /**
      * Retrieve transaction table data from database.
-     * @return type Associative array of transaction data from the database. 
-     * Attributes: DateTime, Player, Stock, Trans, Quantity
+     * @return type Array of associative arrays of transaction data from the database. 
+     * Attributes: "seq", "datetime", "agent", "player", "stock", "trans", "quantity"
      */
     function find_recent_by_stock() {
         $this->load->helper('file');

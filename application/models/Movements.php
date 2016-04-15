@@ -6,8 +6,9 @@ class Movements extends MY_Model {
     }
     
     /**
-     * 
-     * @return type Array of associative arrays. each entry should have 'datetime', 'code', 'action', 'amount'
+     * Retrieve movement table data from database.
+     * @return type Array of associative arrays of transaction data from the database. 
+     * Attributes: "seq", "datetime", "code", "action", "amount"
      */
     function find_recent_by_stock() 
     {
