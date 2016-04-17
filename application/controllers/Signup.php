@@ -24,7 +24,7 @@ class Signup extends My_Controller {
             'password'  => $_POST['password1'],
             'role'      => ROLE_PLAYER
          );
-        $this->signup_m->add($data); 
+        $this->users->add($data); 
         redirect('');
     }
     
