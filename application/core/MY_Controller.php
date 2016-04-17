@@ -177,7 +177,7 @@ class MY_Controller extends CI_Controller {
             $this->session->unset_userdata('name');
             $this->session->unset_userdata('pass');
             $this->session->unset_userdata('role');
-            redirect($this->session->flashdata('redirectToCurrent'));
+            redirect('/');
         }
         
         /**
