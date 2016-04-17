@@ -81,7 +81,6 @@ class Registration extends MY_Controller {
      * Initializes the components for the view.
      */
     private function init_setup() {
-        $this->load->model('registration_m');
         $this->data['pagebody'] = 'registration';
         $this->data['title'] = 'Registration';
         $this->data['page_title'] = 'App Registration';
