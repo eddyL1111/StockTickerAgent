@@ -48,21 +48,25 @@
     </div>
     
     <div class="column">
-        <h2>Download Newest CSV Data</h2>
+        <h2>Download Newest Data</h2>
         <div class="row">
             <table class="ui celled table">
             <tbody>
                 <tr>
-                    <td>Stocks</td>
+                    <td>Stocks.csv</td>
                     <td><a href="manager/download_stockdata_csv">Download</a></td>
                 </tr>
                 <tr>
-                    <td>Movement</td>
+                    <td>Movement.csv</td>
                     <td><a href="manager/download_movement_csv">Download</a></td>
                 </tr>
                 <tr>
-                    <td>Transactions</td>
+                    <td>Transactions.csv</td>
                     <td><a href="manager/download_transactions_csv">Download</a></td>
+                </tr>
+                <tr>
+                    <td>BSX.xml</td>
+                    <td><a href="manager/download_bsx_xml">Download</a></td>
                 </tr>
             </tbody>
             </table>
