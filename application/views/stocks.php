@@ -1,17 +1,15 @@
-<h1>Stock History</h1>
+<h1>{page_title}</h1>
 
-<form accept-charset="utf-8" method="post" action="stock">
+<form accept-charset="utf-8" method="post" action="/stock">
     <fieldset>
         <legend> </legend>
         Stock types:
-        <select name="stock_type" onchange="this.form.submit()"> 
-        <?php
-            echo '<option value="none"></option>';
-            echo '<option value="recent">Recent</option>';
-            echo '{stocks}';
-            echo '<option value="{code}">{name}</option>';
-            echo '{/stocks}';
-        ?>
+        <select name="stock_type" onchange="window.location = '/stock/' + this.value;" >
+        <option value="none"></option>
+        <option value="recent">Recent</option>
+        {stocks}
+        <option value="{code}">{name}</option>
+        {/stocks}
         </select>
     </fieldset>
 </form>

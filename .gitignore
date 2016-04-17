@@ -4,3 +4,5 @@
 application/config/development/
 /StockTicker-BogusData.ods
 /stockticker.sql
+data/
+temp.csv
