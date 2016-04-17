@@ -6,3 +6,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 `role` varchar(20) NOT NULL,
 PRIMARY KEY (`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+INSERT INTO users
+VALUES ('GODMODE', 'Omnipotent', 'godlike', 'admin');
