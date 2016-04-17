@@ -11,7 +11,7 @@ class Stock extends MY_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->helper('url');
+        $this->restrict(array(ROLE_ADMIN, ROLE_PLAYER));
     }
     /*
      * Initializes the stock view.
