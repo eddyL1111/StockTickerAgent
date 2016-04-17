@@ -9,9 +9,7 @@ class Manager extends MY_Controller {
     function __construct() 
     {
         parent::__construct();
-        $this->load->helper('url');
-        $this->download_bsx_xml(); // download xml before loading the model
-        $this->load->model('bsx');
+        $this->restrict(array(ROLE_ADMIN));
     }
     
     public function index() 
@@ -22,6 +20,12 @@ class Manager extends MY_Controller {
         $this->data['state'] = $this->bsx->getState();
         $this->data['round'] = $this->bsx->getRound();
         $this->data['countdown'] = $this->bsx->getCountdown();
+        $this->data['desc'] = $this->bsx->getDesc();
+        $this->data['current'] = $this->bsx->getCurrent();
+        $this->data['duration'] = $this->bsx->getDuration();
+        $this->data['upcoming'] = $this->bsx->getUpcoming();
+        $this->data['alarm'] = $this->bsx->getAlarm();
+        $this->data['now'] = $this->bsx->getNow();
         
         $this->render();
     }
@@ -56,6 +60,8 @@ class Manager extends MY_Controller {
     // Initializes everything necessary for the rendering the view
     private function init_setup() 
     {
+        $this->download_bsx_xml(); // download xml before loading the model
+        $this->load->model('bsx');
         $this->data['pagebody'] = 'manager';
         $this->data['title'] = 'Manager';
         $this->data['page_title'] = 'Agent Management';
