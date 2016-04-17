@@ -52,7 +52,8 @@ class MY_Controller extends CI_Controller {
         function _render_navbar() 
         {
             //Nav bar
-            $menu = $this->config->item('menu_choices');
+            $menu = $this->makemenu();
+            
             foreach ($menu['menudata'] as &$value)
             {
                 if (strcmp($value['name'], $this->data['active_tab']) == 0)
@@ -102,15 +103,16 @@ class MY_Controller extends CI_Controller {
          */
         function login()
         {
-            $this->load->model('players');
+            $this->load->model('users');
             $this->session->set_flashdata('errors', array());
             $this->data['errors'] = array();
-            $name = $this->input->post('username');
+            $name = $this->input->post('userid');
             $pass = $this->input->post('password');
             
             //sanitize input of XSS attacks
             $name = $this->security->xss_clean($name);
             $pass = $this->security->xss_clean($pass);
+            
             
             //empty data is invalid
             if ($name == NULL || $pass == NULL || strlen($name) == 0 || strlen($pass) == 0) 
@@ -130,12 +132,13 @@ class MY_Controller extends CI_Controller {
                 $this->session->set_flashdata('login_errors', $this->data['errors']);
                 redirect($this->session->flashdata('redirectToCurrent'));
             }
-            
+             
             //Validate login credentials database of player names
             if ($this->_isValidCredentials($name, $pass))
             {
                 $this->session->set_userdata('pass', $this->input->post('password'));
-                $this->session->set_userdata('name', $this->input->post('username'));
+                $this->session->set_userdata('name', $this->users->get($name)->username);
+                $this->session->set_userdata('role', $this->users->get($name)->role);
             } else
             {
                 $this->session->set_flashdata('login_name', $name);
@@ -160,7 +163,10 @@ class MY_Controller extends CI_Controller {
             array_push($errors, array('message' => "Incorrect password or username"));
             $this->data['errors'] = $errors;
             
-            return $this->players->exists($name);
+            if($this->users->exists($name)) {
+                return ($this->users->get($name)->password === $pass) ? (true) : (false);
+            }
+            return false;
         }
         
         /**
@@ -170,11 +176,18 @@ class MY_Controller extends CI_Controller {
         {
             $this->session->unset_userdata('name');
             $this->session->unset_userdata('pass');
+            $this->session->unset_userdata('role');
             redirect($this->session->flashdata('redirectToCurrent'));
         }
         
+        /**
+         * Restricts pages according to the roles given to the user
+         * 
+         * @param type $roleNeeded Data, either an array or a variable, with user roles
+         * @return type
+         */
         function restrict($roleNeeded = null) {
-            $userRole= $this->session->userdata('userRole');
+            $userRole= $this->session->userdata('role');
             if($roleNeeded != null) {
                 if(is_array($roleNeeded)) {
                     if(!in_array($userRole, $roleNeeded)) {
@@ -187,4 +200,21 @@ class MY_Controller extends CI_Controller {
                 }
             }  
         }
+        
+        // build menu choices depending on the user role
+	function makemenu()
+	{
+            $role = $this->session->userdata('role');
+            $choices = array();
+
+            if(!isset($role)) {
+                $choices = $this->config->item('menu_choices');
+            } else if($role == ROLE_PLAYER){
+		$choices = $this->config->item('menu_choices1');
+            } else if($role == ROLE_ADMIN) {
+		$choices = $this->config->item('menu_choices2');
+            }	
+            
+            return $choices;
+	}
 }
