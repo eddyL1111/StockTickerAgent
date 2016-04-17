@@ -15,6 +15,30 @@
                     <td>{state}</td>
                 </tr>
                 <tr>
+                    <td>Description</td>
+                    <td>{desc}</td>
+                </tr>
+                <tr>
+                    <td>current</td>
+                    <td>{current}</td>
+                </tr>
+                <tr>
+                    <td>Duration</td>
+                    <td>{duration}</td>
+                </tr>
+                <tr>
+                    <td>Upcoming</td>
+                    <td>{upcoming}</td>
+                </tr>
+                <tr>
+                    <td>Alarm</td>
+                    <td>{alarm}</td>
+                </tr>
+                <tr>
+                    <td>Now</td>
+                    <td>{now}</td>
+                </tr>
+                <tr>
                     <td>Countdown</td>
                     <td>{countdown}</td>
                 </tr>
