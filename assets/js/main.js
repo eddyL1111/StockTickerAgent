@@ -33,16 +33,60 @@ function hidelogin() {
 };
 
 
-$(document)
-    .ready(function() {
-      $('.ui.form')
-        .form({
-          fields:  {
-            username : 'empty',
-            password : 'empty'
-          }
-        })
-      ;
-    })
-  ;
+$(document).ready(function() {
+    $('.ui.form').form({
+        on: 'blur',
+        fields: {
+            userid: {
+                identifier: 'userid',
+                rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please enter a userid'
+                    }
+                ]
+            },
+            username: {
+                identifier: 'username',
+                rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please enter a username'
+                    }
+                ]
+            },
+            password: {
+                identifier  : 'password',
+                rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please enter a password'
+                    }
+                ]
+            },
+            password1: {
+                identifier  : 'password1',
+                rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please enter a password'
+                    }
+                ]
+            },
+            password2: {
+                identifier  : 'password2',
+                rules: [
+                    {
+                      type   : 'empty',
+                      prompt : 'Please re-confirm your password'
+                    },
+                    {
+                      type   : 'match[password1]',
+                      prompt : 'Passwords are not the same'
+                    }
+                ]
+            }
+        }
+    });
+});
 

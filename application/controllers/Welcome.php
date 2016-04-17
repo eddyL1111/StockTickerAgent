@@ -6,7 +6,8 @@ class Welcome extends MY_Controller {
     
         function __construct()
         {
-                parent::__construct();
+            parent::__construct();
+            //$this->restrict(array(ROLE_ADMIN, ROLE_PLAYER));
         }
     
 	/**

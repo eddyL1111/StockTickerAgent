@@ -111,3 +111,4 @@ define('STATUSDATA_URL', 'http://bsx.jlparry.com/status');
 define('STOCKDATA_URL', 'http://bsx.jlparry.com/data/stocks');
 define('MOVEMENTDATA_URL', 'http://bsx.jlparry.com/data/movement');
 define('TRANSACTIONSDATA_URL', 'http://bsx.jlparry.com/data/transactions');
+define('REGISTER_URL', 'http://bsx.jlparry.com/register');

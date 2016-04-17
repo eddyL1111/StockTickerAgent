@@ -17,7 +17,7 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="username" placeholder="Username" value="{login_name}">
+            <input type="text" name="userid" placeholder="User ID" value="{login_name}">
           </div>
         </div>
         <div class="field">
@@ -34,7 +34,7 @@
     </form>
 
     <div class="ui message">
-      New to us? <a href="">Sign Up</a>
+      New to us? <a href="signup">Sign Up</a>
     </div>
   </div>
   </div>

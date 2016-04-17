@@ -2,13 +2,31 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
+// For newbies
 $config['menu_choices'] = array(
-	'menudata' => array(
-		array('name' => 'Overview',  'link' => '/',          'active' => '', 'class' => 'home icon'),
-		array('name' => 'Portfolio', 'link' => '/portfolio', 'active' => '', 'class' => 'heartbeat icon'),
-		array('name' => 'Stocks',    'link' => '/stock',     'active' => '', 'class' => 'line chart icon'),
-                array('name' => 'Manager',   'link' => '/manager',   'active' => '', 'class' => 'wrench icon'),
-	)
+    'menudata' => array(
+        array('name' => 'Connect App',  'link' => '/registration',          'active' => '', 'class' => 'adjust icon'),
+        array('name' => 'Overview',  'link' => '/',          'active' => '', 'class' => 'home icon'),
+    )
+);
+// For users with player role
+$config['menu_choices1'] = array(
+    'menudata' => array(
+        array('name' => 'Connect App',  'link' => '/registration',          'active' => '', 'class' => 'adjust icon'),
+        array('name' => 'Overview',  'link' => '/',          'active' => '', 'class' => 'home icon'),
+        array('name' => 'Portfolio', 'link' => '/portfolio', 'active' => '', 'class' => 'heartbeat icon'),
+        array('name' => 'Stocks',    'link' => '/stock',     'active' => '', 'class' => 'line chart icon'),
+    )
+);
+// For users with admin role
+$config['menu_choices2'] = array(
+    'menudata' => array(
+        array('name' => 'Connect App',  'link' => '/registration',          'active' => '', 'class' => 'adjust icon'),
+        array('name' => 'Overview',  'link' => '/',          'active' => '', 'class' => 'home icon'),
+        array('name' => 'Portfolio', 'link' => '/portfolio', 'active' => '', 'class' => 'heartbeat icon'),
+        array('name' => 'Stocks',    'link' => '/stock',     'active' => '', 'class' => 'line chart icon'),
+        array('name' => 'Manager',   'link' => '/manager',   'active' => '', 'class' => 'wrench icon'),
+    )
 );
 
 
